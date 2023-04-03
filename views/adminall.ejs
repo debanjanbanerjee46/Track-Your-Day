@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-do list</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main">
+      
+        <img class="ham" id="ham3"src="ham.png" alt="" width="30">
+         
+        <div class="taskbar">
+          <nav><ul>
+            <li ><a href="/admin">Today</a></li>
+            <li ><a href="/adminimpl">Important</a></li>
+            <li ><a href="/admincmplt">Completed</a></li>
+            <li><a href="/adminall">All Tasks</a></li>
+          </ul></nav>
+        </div>
+        <div class="rem" id="all">
+          
+            
+            
+            <div class="taskf">
+              <ul class="ul1">
+                <div class="heading">
+                  <img src="task.png" width="35"alt="">
+                  <span>All Task</span>
+                 
+                </div>
+                
+                <% allitems.forEach(function(item){ %>
+                  <li class="li1"> 
+                    
+                    
+                    <form action="/adminalcmpl" class="del" method="post">
+                      <input type="checkbox" onChange="this.form.submit()" value="<%=item.id%>" name="cmp">
+                    </form>
+                    <span class="del77" ><%= item.name %></span>
+                    <span class="progress3" ><%=item.username%></span>
+                    <span class="due5"> Due on: <%= item.date %></span>
+                    <form action="/admindue" id="<%=item.id%>1" onmouseout="show(id)" class="addpro" method="post">
+                      <input type="number" onformchange="submit" name="prog" value="<%=item.progress%>">
+                      <input type="hidden" name="dueid" value="<%=item._id%>">
+                    </form>
+                    <span class="progress" id="<%=item.id%>" onclick="hide(id)"><%=item.progress %>%</span>
+                    <span class="text12">completed</span>
+                    <% if(item.type=="unimportant") { %>
+                      <form action="/adminalimp" class="del2"  method="post">
+                        <button type="submit"  value="<%=item.id %>" name="imp"><img src="unfav.png" alt="" width="20"></button>
+                      </form>
+                      <% }else{ %>
+                        <form action="/adminalunimp" class="del2"  method="post">
+                          <button type="submit"  value="<%=item.id %>" name="imp"><img src="fav.png" alt="" width="20"></button>
+                        </form>
+                        <% } %>
+                    <form action="/adminaldelete" class="del2" method="post">
+                      <button type="submit" value="<%=item.id%>" name="delete"><img src="del.png" alt="" width="20"></button>
+                    </form>
+                    
+                    
+                  </li>
+                  <% }) %>
+              </ul>
+            </div>
+            <div class="addtsk">
+              <form class="add"action="/adminall"method="post">
+                <% if(allusers.length==0) { %>
+                    <fieldset disabled="disabled">
+                    <input type="text"  class="tsk6" name="newtask" required placeholder="Add Task">
+                    <input type="time" class="date2" name="time">
+                    <div class="selectuser">
+                      <% allusers.forEach(function(user){ %>
+                        
+                        <label for="<%=user.username %>" class="lebel"><%=user.name %></label>
+                        <input type="checkbox" id="<%=user.username %>" name="username"value="<%=user.username %>" required>
+                        <input type="hidden" value="<%=user.name %>" name="name">
+                        
+      
+                      <% }) %>
+                      
+                    </div>
+                    <button class="bgh" type="submit" name="button"><img src="add.png" alt="" width="20"></button>
+                  </fieldset>
+                  <% }else{ %>
+                    <input type="text"  class="tsk6" name="newtask" required placeholder="Add Task">
+                    <input type="date" class="date3" name="date" required>
+                    <input type="time" class="date4" name="time">
+                    <div class="selectuser">
+                      <% allusers.forEach(function(user){ %>
+                        <span>
+                        <label for="<%=user.username %>" class="lebel"><%=user.name %></label>
+                        <input type="checkbox" id="<%=user.username %>" name="username"value="<%=user.username %>">
+                       </span>
+                        
+      
+                      <% }) %>
+                      
+                    </div>
+                    <button class="bgh" type="submit" name="button"><img src="add.png" alt="" width="20"></button>
+                    <% } %>
+              </form>
+            </div>
+           </div>
+        
+         
+          <div id="tsk"></div>
+          <div id="imp"></div>
+         </div>
+     </div>
+    <script src="script2.js"></script>
+    <script>document.querySelector('.addtsk').addEventListener("click", () => {
+        document.querySelector('.selectuser').style.display='flex';
+        
+        });
+        </script>
+</body>
+</html>
