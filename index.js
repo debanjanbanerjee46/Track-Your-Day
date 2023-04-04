@@ -18,7 +18,9 @@ app.use(session({
   }));
 app.use(passport.initialize());
 app.use(passport.session());
+mongoose.set('strictQuery', false);
 mongoose.connect(process.env.API_KEY, {useNewUrlParser: true});
+
 
 
 const taskSchema =new mongoose.Schema ({
@@ -545,7 +547,7 @@ app.get('/logout', function(req, res, next){
   });
   app.post('/cmpl',function(req,res){
     const cmpl=req.body.cmp;
-    Item.findOneAndUpdate({_id:cmpl}, { progress:100 },function(err){
+    Item.findOneAndUpdate({_id:cmpl}, { progress:100,date:x },function(err){
         if(err){
             console.log(err);
         }
@@ -556,7 +558,7 @@ app.get('/logout', function(req, res, next){
   })
   app.post('/alcmpl',function(req,res){
     const cmpl=req.body.cmp;
-    Item.findOneAndUpdate({_id:cmpl}, { progress:100 },function(err){
+    Item.findOneAndUpdate({_id:cmpl}, { progress:100,date:x },function(err){
         if(err){
             console.log(err);
         }
@@ -567,7 +569,7 @@ app.get('/logout', function(req, res, next){
   })
   app.post('/adminalcmpl',function(req,res){
     const cmpl=req.body.cmp;
-    Item.findOneAndUpdate({_id:cmpl}, { progress:100 },function(err){
+    Item.findOneAndUpdate({_id:cmpl}, { progress:100,date:x },function(err){
         if(err){
             console.log(err);
         }
@@ -578,7 +580,7 @@ app.get('/logout', function(req, res, next){
   })
   app.post('/admincmpl',function(req,res){
     const cmpl=req.body.cmp;
-    Item.findOneAndUpdate({_id:cmpl}, { progress:100 },function(err){
+    Item.findOneAndUpdate({_id:cmpl}, { progress:100,date:x },function(err){
         if(err){
             console.log(err);
         }
@@ -589,7 +591,7 @@ app.get('/logout', function(req, res, next){
   })
   app.post('/cmplimp',function(req,res){
     const cmpl=req.body.cmp;
-    Item.findOneAndUpdate({_id:cmpl}, { progress:100 },function(err){
+    Item.findOneAndUpdate({_id:cmpl}, { progress:100,date:x },function(err){
         if(err){
             console.log(err);
         }
@@ -600,7 +602,7 @@ app.get('/logout', function(req, res, next){
   })
   app.post('/admincmplimp',function(req,res){
     const cmpl=req.body.cmp;
-    Item.findOneAndUpdate({_id:cmpl}, { progress:100 },function(err){
+    Item.findOneAndUpdate({_id:cmpl}, { progress:100,date:x },function(err){
         if(err){
             console.log(err);
         }
