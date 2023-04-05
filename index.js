@@ -335,7 +335,7 @@ app.post("/admin",function(req,res){
     const ui=req.body.username;
     const ad=req.user.id;
     
-    if(typeof(ui)==Object){
+    if(typeof(ui)==array){
     ui.forEach(element => {
         
     
