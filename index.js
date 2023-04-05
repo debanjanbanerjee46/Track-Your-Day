@@ -19,7 +19,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 mongoose.set('strictQuery', true);
-mongoose.connect(process.env.API_KEY, {useNewUrlParser: true});
+mongoose.connect(process.env.API_KEY, {useNewUrlParser: false});
 
 
 
