@@ -350,10 +350,10 @@ app.post("/admin",function(req,res){
         date:x,
         progress:0,
         time:de
-    })
+    });
     item.save();
     });
-});
+})
     }
     else{
         User.findOne({username:ui},function(err,fondname){
