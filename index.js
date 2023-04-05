@@ -18,7 +18,7 @@ app.use(session({
   }));
 app.use(passport.initialize());
 app.use(passport.session());
-mongoose.set('strictQuery', false);
+mongoose.set('strictQuery', true);
 mongoose.connect(process.env.API_KEY, {useNewUrlParser: true});
 
 
@@ -335,27 +335,28 @@ app.post("/admin",function(req,res){
     const ui=req.body.username;
     const ad=req.user.id;
     
-    if(typeof(ui)==Object){
-    ui.forEach(element => {
+    if(typeof(ui)=='object'){
+    
+        ui.forEach(element => {
         
     
-    User.findOne({username:element},function(err,fondname){
-               
-        const item=new Item({
-        admin:ad,
-        user:element,
-        type:'unimportant',
-        username:fondname.name,
-        name:itemname,
-        date:x,
-        progress:0,
-        time:de
-    })
-    item.save();
-    });
-});
-    }
-    else{
+            User.findOne({username:element},function(err,fondname){
+                       
+                const item=new Item({
+                admin:ad,
+                user:element,
+                type:'unimportant',
+                username:fondname.name,
+                name:itemname,
+                date:x,
+                progress:0,
+                time:de
+            })
+            item.save();
+            });
+        });
+        }
+    /*
         User.findOne({username:ui},function(err,fondname){
                
             const item=new Item({
@@ -370,8 +371,8 @@ app.post("/admin",function(req,res){
         })
         item.save();
         });
-    }
     
+     */
     res.redirect("/admin");
     
 })
