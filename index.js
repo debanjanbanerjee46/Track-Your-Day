@@ -356,7 +356,8 @@ app.post("/admin",function(req,res){
             });
         });
         }
-    /*
+       
+    else{
         User.findOne({username:ui},function(err,fondname){
                
             const item=new Item({
@@ -372,7 +373,7 @@ app.post("/admin",function(req,res){
         item.save();
         });
     
-     */
+    }
     res.redirect("/admin");
     
 })
